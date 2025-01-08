@@ -7,19 +7,27 @@ interface InputProps {
 }
 
 export default function Input({onAddTask}: InputProps) {
-    const[task, setTask] = useState("");
+    const [inputValue, setInputValue] = useState("");
 
     const handleAddTask = () => {
-        onAddTask(task);
-        setTask("");
-    }
+        onAddTask(inputValue);
+        setInputValue("");
+    };
+    
+    const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+        if (e.key === "Enter") {
+          handleAddTask();
+        }
+    };
+
     return(
         <div className={styles.container_input}>
             <input 
                 type="text"
                 placeholder='Add a new task' 
-                value={task}
-                onChange={(e) => setTask(e.target.value)}
+                value={inputValue}
+                onChange={(e) => setInputValue(e.target.value)}
+                onKeyDown={handleKeyDown}
             />
             <button onClick={handleAddTask}>Add task</button>
         </div>

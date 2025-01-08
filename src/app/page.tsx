@@ -1,6 +1,6 @@
 
 'use client';
-import { useState } from "react";
+import { useState, useEffect} from "react";
 import Input from "@/components/Input/Input";
 import List from "@/components/List/List";
 import Modal from "@/components/Modal/Modal";
@@ -17,11 +17,29 @@ export default function Page() {
   const [selectedTask, setSelectedTask] = useState<Task | null>(null);
   const [editText, setEditText] = useState("");
 
+  const saveTasksToLocalStorage = (tasks: Task[]) => {
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+  };
+
+  // ✅ Recupera as tarefas do Local Storage quando a página é carregada
+  useEffect(() => {
+    const savedTasks = localStorage.getItem("tasks");
+    if (savedTasks) {
+      setTasks(JSON.parse(savedTasks));
+    }
+  }, []);
+
+  // ✅ Atualiza o Local Storage toda vez que as tarefas mudam
+  useEffect(() => {
+    saveTasksToLocalStorage(tasks);
+  }, [tasks]);
+
   const addTask = (newTask: string) => {
     if (newTask.trim() === "") return;
+    const formattedTask = newTask.charAt(0).toUpperCase() + newTask.slice(1);
     const newTaskObject: Task = {
       id: Date.now(), 
-      text: newTask,
+      text: formattedTask ,
       completed: false,
     };
     setTasks([...tasks, newTaskObject]);
