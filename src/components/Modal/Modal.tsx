@@ -1,16 +1,19 @@
+import { ReactNode } from 'react';
 import styles from './Modal.module.scss';
 
 interface ModalProps {
-    onConfirm: () => void;
-    onCancel: () => void;
     message: string;
+    children?: ReactNode;
+    onConfirm: (newText: string) => void;
+    onCancel: () => void;
 }
 
-export default function Modal({ onConfirm, onCancel, message }: ModalProps) {
+export default function Modal({ message, children, onConfirm, onCancel  }: ModalProps) {
     return (
       <div className={styles.overlay}>
         <div className={styles.modal}>
           <p>{message}</p>
+          {children && <div className={styles.modalContent}>{children}</div>}
           <div className={styles.buttons}>
             <button className={styles.confirm} onClick={onConfirm}>
               Confirm

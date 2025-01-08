@@ -11,22 +11,28 @@ interface ListProps {
     tasks: Task[];
     onToggleTask: (id: number) => void;
     onDeleteTask: (id: number) => void;
+    onEditTask: (task: Task) => void;
 }
 
-export default function List({tasks, onToggleTask, onDeleteTask }: ListProps) {
+export default function List({tasks, onToggleTask, onDeleteTask, onEditTask }: ListProps) {
     return(
         <ul className={style.container_list}>
             {tasks.map((task) => (
                 <li key={task.id} className={task.completed ? style.completed : ""}>
-                    {task.text}
-                    <div>
+                    <div className={style.container_display}>
                         <input
                             type="checkbox"
                             checked={task.completed}
                             onChange={() => onToggleTask(task.id)}
                         />
+                        {task.text}
+                    </div>
+                    <div className={style.container_display}>
+                        <button onClick={() => onEditTask(task)}>
+                            <Image src="/assets/icons/edit.png" alt="Lixeira" width={22} height={22} />
+                        </button>
                         <button onClick={() => onDeleteTask(task.id)}>
-                            <Image src="/assets/icons/delete.png" alt="Lixeira" width={20} height={20} />
+                            <Image src="/assets/icons/delete.png" alt="Lixeira" width={18} height={18} />
                         </button>
                     </div>
                 </li>

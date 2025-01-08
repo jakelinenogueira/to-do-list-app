@@ -13,7 +13,10 @@ export default function Page() {
   }
 
   const [tasks, setTasks] = useState<Task[]>([]);
+  const [modalType, setModalType] = useState<"edit" | "delete" | null>(null);
   const [taskToDelete, setTaskToDelete] = useState<number | null>(null);
+  const [selectedTask, setSelectedTask] = useState<Task | null>(null);
+  const [editText, setEditText] = useState("");
 
   const addTask = (newTask: string) => {
     if (newTask.trim() === "") return;
@@ -33,31 +36,56 @@ export default function Page() {
     );
   };
 
-  const openDeleteModal = (id: number) => {
-    setTaskToDelete(id);
+  const openEditModal = (task: Task) => {
+    setSelectedTask(task);
+    setEditText(task.text);
+    setModalType("edit");
+  };
+
+  const openDeleteModal = (task: Task) => {
+    setSelectedTask(task);
+    setModalType("delete");
+  };
+
+  const confirmEditTask = () => {
+    if (selectedTask) {
+      setTasks(
+        tasks.map((task) =>
+          task.id === selectedTask.id ? { ...task, text: editText } : task
+        )
+      );
+      setModalType(null);
+      setSelectedTask(null);
+    }
   };
 
   const confirmDeleteTask = () => {
-    if (taskToDelete !== null) {
-      setTasks(tasks.filter((task) => task.id !== taskToDelete));
+    if (selectedTask) {
+      setTasks(tasks.filter((task) => task.id !== selectedTask.id));
+      setModalType(null);
+      setSelectedTask(null);
     }
-    setTaskToDelete(null);
-  };
-
-  const cancelDeleteTask = () => {
-    setTaskToDelete(null);
   };
 
   return (
     <div className="todo-list-container">
       <Input onAddTask={addTask} />
-      <List tasks={tasks} onToggleTask={toggleTask} onDeleteTask={openDeleteModal}/>
+      <List tasks={tasks} onToggleTask={toggleTask} onEditTask={openEditModal} onDeleteTask={openDeleteModal}/>
 
-      {taskToDelete !== null && (
+      {modalType === "edit" && (
+        <Modal message="Edit your task" onConfirm={confirmEditTask} onCancel={() => setModalType(null)}>
+          <input
+            type="text"
+            value={editText}
+            onChange={(e) => setEditText(e.target.value)}
+          />
+        </Modal>
+      )}
+      {modalType === "delete" && (
         <Modal
-          message="Are you sure you want to delete this task?"
+          message={`Are you sure you want to delete "${selectedTask?.text}"?`}
           onConfirm={confirmDeleteTask}
-          onCancel={cancelDeleteTask}
+          onCancel={() => setModalType(null)}
         />
       )}
     </div>
