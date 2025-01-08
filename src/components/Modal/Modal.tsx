@@ -3,7 +3,7 @@ import styles from './Modal.module.scss';
 
 interface ModalProps {
     message: string;
-    onConfirm: (newText: string) => void;
+    onConfirm: () => void;
     onCancel: () => void;
     children?: ReactNode;
 }
