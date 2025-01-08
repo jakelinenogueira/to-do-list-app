@@ -1,0 +1,22 @@
+.container_input {
+  display: flex;
+  gap: 8px;
+
+  input {
+    flex-grow: 1;
+    padding: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    max-width: 400px;
+    outline: none;
+  }
+
+  button {
+    padding: 16px;
+    border: none;
+    background-color: #5ba967;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+}

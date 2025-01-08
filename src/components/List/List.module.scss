@@ -1,0 +1,39 @@
+.container_list {
+  height: calc(100vh - 320px);
+  margin-top: 20px;
+  list-style: none;
+  padding: 0;
+  overflow-y: auto;
+
+  li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px;
+    border-bottom: 1px solid #ccc;
+    background-color: #fff;
+    font-size: 14px;
+    text-transform: capitalize;
+
+    input[type="checkbox"] {
+      margin-right: 15px;
+      width: 20px;
+      height: 20px;
+    }
+
+    button {
+      background-color: transparent;
+      border: none;
+      cursor: pointer;
+    }
+  }
+
+  li:last-child {
+    border-bottom: none;
+  }
+
+  li.completed {
+    text-decoration: line-through;
+    color: gray;
+  }
+}

@@ -1,0 +1,14 @@
+header {
+  .container {
+    margin-bottom: 60px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+
+    span {
+      font-size: 45px;
+      font-weight: 800;
+      color: #5ba967;
+    }
+  }
+}
