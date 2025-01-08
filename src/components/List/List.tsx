@@ -29,7 +29,7 @@ export default function List({tasks, onToggleTask, onDeleteTask, onEditTask }: L
                     </div>
                     <div className={style.container_display}>
                         <button onClick={() => onEditTask(task)}>
-                            <Image src="/assets/icons/edit.png" alt="Lixeira" width={22} height={22} />
+                            <Image src="/assets/icons/edit.png" alt="Lápis" width={22} height={22} />
                         </button>
                         <button onClick={() => onDeleteTask(task.id)}>
                             <Image src="/assets/icons/delete.png" alt="Lixeira" width={18} height={18} />
