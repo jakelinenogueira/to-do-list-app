@@ -16,10 +16,10 @@ export default function Modal({ message, onConfirm, onCancel, children }: ModalP
           {children && <div className={styles.modalContent}>{children}</div>}
           <div className={styles.buttons}>
             <button className={styles.confirm} onClick={onConfirm}>
-              Confirm
+              Confirmar
             </button>
             <button className={styles.cancel} onClick={onCancel}>
-              Cancel
+              Cancelar
             </button>
           </div>
         </div>

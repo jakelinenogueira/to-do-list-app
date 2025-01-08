@@ -24,12 +24,12 @@ export default function Input({onAddTask}: InputProps) {
         <div className={styles.container_input}>
             <input 
                 type="text"
-                placeholder='Add a new task' 
+                placeholder='Adicionar uma nova tarefa' 
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
                 onKeyDown={handleKeyDown}
             />
-            <button onClick={handleAddTask}>Add task</button>
+            <button onClick={handleAddTask}>Adicionar</button>
         </div>
     );
 }

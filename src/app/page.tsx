@@ -94,7 +94,7 @@ export default function Page() {
       <List tasks={tasks} onToggleTask={toggleTask} onEditTask={openEditModal} onDeleteTask={(id) => openDeleteModal(id)}/>
 
       {modalType === "edit" && (
-        <Modal message="Edit your task" onConfirm={confirmEditTask} onCancel={() => setModalType(null)}>
+        <Modal message="Edite sua tarefa" onConfirm={confirmEditTask} onCancel={() => setModalType(null)}>
           <input
             type="text"
             value={editText}
@@ -104,7 +104,7 @@ export default function Page() {
       )}
       {modalType === "delete" && (
         <Modal
-          message={`Are you sure you want to delete "${selectedTask?.text}"?`}
+          message={`Tem certeza de que deseja excluir "${selectedTask?.text}"?`}
           onConfirm={confirmDeleteTask}
           onCancel={() => setModalType(null)}
         />
