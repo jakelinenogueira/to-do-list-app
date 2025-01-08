@@ -3,12 +3,12 @@ import styles from './Modal.module.scss';
 
 interface ModalProps {
     message: string;
-    children?: ReactNode;
     onConfirm: (newText: string) => void;
     onCancel: () => void;
+    children?: ReactNode;
 }
 
-export default function Modal({ message, children, onConfirm, onCancel  }: ModalProps) {
+export default function Modal({ message, onConfirm, onCancel, children }: ModalProps) {
     return (
       <div className={styles.overlay}>
         <div className={styles.modal}>

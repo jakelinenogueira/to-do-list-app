@@ -14,7 +14,6 @@ export default function Page() {
 
   const [tasks, setTasks] = useState<Task[]>([]);
   const [modalType, setModalType] = useState<"edit" | "delete" | null>(null);
-  const [taskToDelete, setTaskToDelete] = useState<number | null>(null);
   const [selectedTask, setSelectedTask] = useState<Task | null>(null);
   const [editText, setEditText] = useState("");
 
@@ -42,9 +41,12 @@ export default function Page() {
     setModalType("edit");
   };
 
-  const openDeleteModal = (task: Task) => {
-    setSelectedTask(task);
-    setModalType("delete");
+  const openDeleteModal = (taskId: number) => {
+    const taskToDelete = tasks.find((task) => task.id === taskId);
+    if (taskToDelete) {
+      setSelectedTask(taskToDelete);
+      setModalType("delete");
+    }
   };
 
   const confirmEditTask = () => {
@@ -67,10 +69,11 @@ export default function Page() {
     }
   };
 
+
   return (
     <div className="todo-list-container">
       <Input onAddTask={addTask} />
-      <List tasks={tasks} onToggleTask={toggleTask} onEditTask={openEditModal} onDeleteTask={openDeleteModal}/>
+      <List tasks={tasks} onToggleTask={toggleTask} onEditTask={openEditModal} onDeleteTask={(id) => openDeleteModal(id)}/>
 
       {modalType === "edit" && (
         <Modal message="Edit your task" onConfirm={confirmEditTask} onCancel={() => setModalType(null)}>
