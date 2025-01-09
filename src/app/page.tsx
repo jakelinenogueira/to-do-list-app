@@ -53,12 +53,21 @@ export default function Page() {
     );
   };
 
-  const openEditModal = (task: Task) => {
-    setSelectedTask(task);
-    setEditText(task.text);
-    setModalType("edit");
+  const capitalizeFirstLetter = (text: string) => {
+    return text.charAt(0).toUpperCase() + text.slice(1);
   };
 
+  const openEditModal = (task: Task) => {
+    if (task.completed) {
+      alert("Não é possível editar uma tarefa que já foi concluída.");
+      return;
+    }
+    
+    setSelectedTask(task);
+    setEditText(capitalizeFirstLetter(task.text));
+    setModalType("edit");
+  };
+  
   const openDeleteModal = (taskId: number) => {
     const taskToDelete = tasks.find((task) => task.id === taskId);
     if (taskToDelete) {
@@ -69,9 +78,10 @@ export default function Page() {
 
   const confirmEditTask = () => {
     if (selectedTask) {
+      const formattedText = capitalizeFirstLetter(editText);
       setTasks(
         tasks.map((task) =>
-          task.id === selectedTask.id ? { ...task, text: editText } : task
+          task.id === selectedTask.id ? { ...task, text: formattedText } : task
         )
       );
       setModalType(null);
