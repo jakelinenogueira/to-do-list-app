@@ -4,6 +4,8 @@ import { useState, useEffect} from "react";
 import Input from "@/components/Input/Input";
 import List from "@/components/List/List";
 import Modal from "@/components/Modal/Modal";
+import Filters from "@/components/Filters/Filters"; 
+
 
 export default function Page() {
   interface Task {
@@ -16,6 +18,8 @@ export default function Page() {
   const [modalType, setModalType] = useState<"edit" | "delete" | null>(null);
   const [selectedTask, setSelectedTask] = useState<Task | null>(null);
   const [editText, setEditText] = useState("");
+  const [filterStatus, setFilterStatus] = useState<"all" | "completed" | "incomplete">("all");
+  const [searchText, setSearchText] = useState("");
 
   const saveTasksToLocalStorage = (tasks: Task[]) => {
     localStorage.setItem("tasks", JSON.stringify(tasks));
@@ -62,7 +66,7 @@ export default function Page() {
       alert("Não é possível editar uma tarefa que já foi concluída.");
       return;
     }
-    
+
     setSelectedTask(task);
     setEditText(capitalizeFirstLetter(task.text));
     setModalType("edit");
@@ -97,11 +101,28 @@ export default function Page() {
     }
   };
 
+  const filteredTasks = tasks.filter((task) => {
+    if (filterStatus === "completed" && !task.completed) return false;
+    if (filterStatus === "incomplete" && task.completed) return false;
+    if (searchText && !task.text.toLowerCase().includes(searchText.toLowerCase())) return false;
+    return true;
+  });
+
 
   return (
-    <div className="todo-list-container">
-      <Input onAddTask={addTask} />
-      <List tasks={tasks} onToggleTask={toggleTask} onEditTask={openEditModal} onDeleteTask={(id) => openDeleteModal(id)}/>
+    <div>
+      <div className="container-filters">
+        <Input onAddTask={addTask} />
+
+        <Filters
+          filterStatus={filterStatus}
+          setFilterStatus={setFilterStatus}
+          searchText={searchText}
+          setSearchText={setSearchText}
+        />
+      </div>
+
+      <List tasks={filteredTasks} onToggleTask={toggleTask} onEditTask={openEditModal} onDeleteTask={(id) => openDeleteModal(id)}/>
 
       {modalType === "edit" && (
         <Modal message="Edite sua tarefa" onConfirm={confirmEditTask} onCancel={() => setModalType(null)}>

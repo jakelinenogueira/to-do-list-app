@@ -18,3 +18,11 @@ body {
   padding: 16px;
 }
 
+.container-filters {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
