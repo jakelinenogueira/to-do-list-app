@@ -11,6 +11,12 @@
     border: 1px solid #ccc;
     outline: none;
   }
+
+  select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+  }
 }
 
 @media (max-width: 767px) {
