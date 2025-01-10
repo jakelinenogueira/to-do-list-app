@@ -33,10 +33,3 @@ body {
   font-style: italic;
 }
 
-
-@media (max-width: 768px) {
-  .container-filters {
-    display: flex;
-    flex-direction: column-reverse;
-  }
-}
