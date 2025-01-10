@@ -26,3 +26,10 @@ body {
   gap: 10px;
 }
 
+.no-tasks-message {
+  margin-top: 20px;
+  font-size: 18px;
+  color: #777;
+  font-style: italic;
+}
+

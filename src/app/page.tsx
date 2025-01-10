@@ -122,7 +122,11 @@ export default function Page() {
         />
       </div>
 
-      <List tasks={filteredTasks} onToggleTask={toggleTask} onEditTask={openEditModal} onDeleteTask={(id) => openDeleteModal(id)}/>
+      {filteredTasks.length === 0 ? (
+        <p className="no-tasks-message">Nenhuma tarefa encontrada.</p>
+      ) : (
+        <List tasks={filteredTasks} onToggleTask={toggleTask} onEditTask={openEditModal} onDeleteTask={openDeleteModal} />
+      )}
 
       {modalType === "edit" && (
         <Modal message="Edite sua tarefa" onConfirm={confirmEditTask} onCancel={() => setModalType(null)}>
