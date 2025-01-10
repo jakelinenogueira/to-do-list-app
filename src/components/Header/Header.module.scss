@@ -12,3 +12,9 @@ header {
     }
   }
 }
+
+@media (max-width: 767px) {
+  header .container {
+    margin-bottom: 18px;
+  }
+}

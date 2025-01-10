@@ -12,3 +12,11 @@
     outline: none;
   }
 }
+
+@media (max-width: 767px) {
+  .filter_controls {
+    width: 100%;
+    margin-bottom: 20px;
+    justify-content: end;
+  }
+}
