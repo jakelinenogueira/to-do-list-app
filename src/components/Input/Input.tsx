@@ -1,3 +1,4 @@
+import React from 'react';
 import styles from './Input.module.scss';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import {useState} from "react";

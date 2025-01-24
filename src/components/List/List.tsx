@@ -1,3 +1,4 @@
+import React from 'react';
 import style from './List.module.scss';
 import Image from 'next/image';
 
