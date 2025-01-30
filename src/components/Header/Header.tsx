@@ -6,8 +6,7 @@ export default function Header() {
     return (
         <header>
             <div className={styles.container}>
-                <Image src="/assets/images/list.png" alt="Lista" width={150} height={150} />
-                <span>To-Do List</span>
+                <h1>To-Do List</h1>
             </div>
         </header>
     );
