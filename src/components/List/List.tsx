@@ -38,9 +38,6 @@ export default function List({tasks, onToggleTask, onDeleteTask, onEditTask }: L
                     </div>
                 </li>
             ))}
-            <div className={style.footer}>
-                <p>Created by <a href="https://www.linkedin.com/in/jakeline-nogueira-04b2a314b/" target="_blank" rel="noopener noreferrer">Jakeline Nogueira</a></p>
-            </div>
         </ul>
     );
 }

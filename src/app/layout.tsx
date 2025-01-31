@@ -18,6 +18,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             <div className="col-md-6">
               <div className="image-content">
                 <img className="img-fluid" src="/assets/images/list.jpg" alt="cenário"/>
+                <p>Created by <a href="https://www.linkedin.com/in/jakeline-nogueira-04b2a314b/" target="_blank" rel="noopener noreferrer">Jakeline Nogueira</a></p>
               </div>
             </div>
           </div>
