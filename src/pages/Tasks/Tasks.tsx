@@ -114,53 +114,56 @@ export default function Tasks() {
 
 
   return (
-    <div className="container">
+    <div className={styles.tasks}>
+      <div className="container">
         <div className="row">
-            <div className="col-md-6">
-                <div className={styles.main_content}>
-                    <Header/>
-                    <div className={styles.container_filters}>
-                        <Input onAddTask={addTask} />
+                <div className="col-md-6">
+                    <div className={styles.main_content}>
+                        <Header/>
+                        <div className={styles.container_filters}>
+                            <Input onAddTask={addTask} />
 
-                        <Filters
-                            filterStatus={filterStatus}
-                            setFilterStatus={setFilterStatus}
-                            searchText={searchText}
-                            setSearchText={setSearchText}
+                            <Filters
+                                filterStatus={filterStatus}
+                                setFilterStatus={setFilterStatus}
+                                searchText={searchText}
+                                setSearchText={setSearchText}
+                            />
+                        </div>
+
+                        {filteredTasks.length === 0 ? (
+                        <p className={styles.no_tasks_message}>Nenhuma tarefa encontrada.</p>
+                        ) : (
+                        <List tasks={filteredTasks} onToggleTask={toggleTask} onEditTask={openEditModal} onDeleteTask={openDeleteModal} />
+                        )}
+
+                        {modalType === "edit" && (
+                        <Modal message="Edite sua tarefa" onConfirm={confirmEditTask} onCancel={() => setModalType(null)}>
+                            <input
+                            type="text"
+                            value={editText}
+                            onChange={(e) => setEditText(e.target.value)}
+                            />
+                        </Modal>
+                        )}
+                        {modalType === "delete" && (
+                        <Modal
+                            message={`Tem certeza de que deseja excluir "${selectedTask?.text}"?`}
+                            onConfirm={confirmDeleteTask}
+                            onCancel={() => setModalType(null)}
                         />
+                        )}
                     </div>
-
-                    {filteredTasks.length === 0 ? (
-                    <p className={styles.no_tasks_message}>Nenhuma tarefa encontrada.</p>
-                    ) : (
-                    <List tasks={filteredTasks} onToggleTask={toggleTask} onEditTask={openEditModal} onDeleteTask={openDeleteModal} />
-                    )}
-
-                    {modalType === "edit" && (
-                    <Modal message="Edite sua tarefa" onConfirm={confirmEditTask} onCancel={() => setModalType(null)}>
-                        <input
-                        type="text"
-                        value={editText}
-                        onChange={(e) => setEditText(e.target.value)}
-                        />
-                    </Modal>
-                    )}
-                    {modalType === "delete" && (
-                    <Modal
-                        message={`Tem certeza de que deseja excluir "${selectedTask?.text}"?`}
-                        onConfirm={confirmDeleteTask}
-                        onCancel={() => setModalType(null)}
-                    />
-                    )}
                 </div>
-            </div>
-            <div className="col-md-6">
-                <div className={styles.image_content}>
-                    <img className="img-fluid" src="/assets/images/list.jpg" alt="cenário"/>
-                    <p>Created by <a href="https://www.linkedin.com/in/jakeline-nogueira-04b2a314b/" target="_blank" rel="noopener noreferrer">Jakeline Nogueira</a></p>
+                <div className="col-md-6">
+                    <div className={styles.image_content}>
+                        <button>Login</button>
+                        <img className="img-fluid" src="/assets/images/list.jpg" alt="cenário"/>
+                        <p>Created by <a href="https://www.linkedin.com/in/jakeline-nogueira-04b2a314b/" target="_blank" rel="noopener noreferrer">Jakeline Nogueira</a></p>
+                    </div>
                 </div>
-            </div>
         </div>
+      </div>
     </div>
   );
 }

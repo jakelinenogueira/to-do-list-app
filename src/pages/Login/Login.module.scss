@@ -1,0 +1,104 @@
+.login {
+  background: #d5dfe8;
+
+  .content {
+    height: 100vh;
+    min-height: 550px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    h1 {
+      margin-bottom: 130px;
+      font-size: 42px;
+      font-weight: 600;
+      color: #112142;
+      text-align: center;
+    }
+
+    form {
+      margin: 0 15px;
+      position: relative;
+      padding: 100px 50px;
+      width: 518px;
+      min-width: 360px;
+      background-color: #ffffff8c;
+      border-radius: 50px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      box-shadow: 0px 9px 33px 2px rgb(0 0 0 / 33%);
+
+      .background_img {
+        position: absolute;
+        top: -64px;
+        right: 200px;
+        width: 120px;
+        background-color: #033061;
+        border-radius: 60px;
+
+        img {
+          padding: 30px;
+          width: 120px;
+        }
+      }
+
+      .form_group {
+        position: relative;
+
+        img {
+          width: 54px;
+          padding: 15px;
+          background: #273364;
+          position: absolute;
+        }
+      }
+
+      input {
+        width: 100%;
+        border: none;
+        padding: 15px 15px 15px 70px;
+        background-color: #31547b;
+        color: #fff;
+      }
+
+      input::placeholder {
+        color: #c2bfbf;
+        font-size: 17px;
+        font-weight: 300;
+        letter-spacing: 2px;
+      }
+    }
+
+    button {
+      padding: 15px 0;
+      width: 388px;
+      min-width: 270px;
+      border: none;
+      background-color: #ffffff69;
+      border-radius: 0px 0px 30px 30px;
+      text-transform: uppercase;
+      color: #273364;
+      font-size: 15px;
+      font-weight: 500;
+      letter-spacing: 1px;
+      box-shadow: 0px 9px 33px 2px rgb(0 0 0 / 29%);
+    }
+
+    button:hover {
+      background-color: #273364;
+      color: #fff;
+    }
+
+    @media (max-width: 768px) {
+      form {
+        width: 90%;
+      }
+
+      button {
+        width: 80%;
+      }
+    }
+  }
+}
