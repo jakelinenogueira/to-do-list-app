@@ -1,11 +1,10 @@
-import firebase from 'firebase/app';
-import 'firebase/auth';  
-import 'firebase/firestore';  
-
+import { initializeApp } from "firebase/app";
+import { getAuth } from "firebase/auth";
+import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: "9eL4ussaFN-Dij2aS2wHySuwWQGRkuKW-g1KydEyAHE",
-  authDomain: "firebase-adminsdk-fbsvc@to-do-list-app-e7900.iam.gserviceaccount.com",
+  authDomain: "to-do-list-app-e7900.firebaseapp.com",
   projectId: "SEU_PROJECT_ID",
   storageBucket: "SEU_STORAGE_BUCKET",
   messagingSenderId: "SEU_MESSAGING_SENDER_ID",
@@ -14,9 +13,11 @@ const firebaseConfig = {
 };
 
 // Inicializa o Firebase
-firebase.initializeApp(firebaseConfig);
+const firebaseApp = initializeApp(firebaseConfig);
 
-const auth = firebase.auth();
-const firestore = firebase.firestore();
+// Inicializa os serviços
+const auth = getAuth(firebaseApp);
+const db = getFirestore(firebaseApp);
 
-export { auth, firestore };
+export { auth, db };
+

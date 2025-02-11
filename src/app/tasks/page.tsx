@@ -2,6 +2,7 @@
 'use client';
 import React from 'react';
 import { useState, useEffect} from "react";
+import { useRouter } from 'next/navigation';
 import styles from './Tasks.module.scss'
 import Input from "@/components/Input/Input";
 import List from "@/components/List/List";
@@ -17,13 +18,13 @@ export default function Tasks() {
     completed: boolean;
   }
 
-
   const [tasks, setTasks] = useState<Task[]>([]);
   const [modalType, setModalType] = useState<"edit" | "delete" | null>(null);
   const [selectedTask, setSelectedTask] = useState<Task | null>(null);
   const [editText, setEditText] = useState("");
   const [filterStatus, setFilterStatus] = useState<"all" | "completed" | "incomplete">("all");
   const [searchText, setSearchText] = useState("");
+  const router = useRouter();
 
   const saveTasksToLocalStorage = (tasks: Task[]) => {
     localStorage.setItem("tasks", JSON.stringify(tasks));
@@ -112,6 +113,10 @@ export default function Tasks() {
     return true;
   });
 
+  const login = () => {
+    router.push('/login'); 
+  }; 
+
 
   return (
     <div className={styles.tasks}>
@@ -157,7 +162,7 @@ export default function Tasks() {
                 </div>
                 <div className="col-md-6">
                     <div className={styles.image_content}>
-                        <button>Login</button>
+                        <button onClick={login}>Login</button>
                         <img className="img-fluid" src="/assets/images/list.jpg" alt="cenário"/>
                         <p>Created by <a href="https://www.linkedin.com/in/jakeline-nogueira-04b2a314b/" target="_blank" rel="noopener noreferrer">Jakeline Nogueira</a></p>
                     </div>

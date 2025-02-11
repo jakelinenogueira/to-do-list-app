@@ -71,7 +71,7 @@
       }
     }
 
-    button {
+    .btn_enter {
       padding: 15px 0;
       width: 388px;
       min-width: 270px;
@@ -86,9 +86,21 @@
       box-shadow: 0px 9px 33px 2px rgb(0 0 0 / 29%);
     }
 
-    button:hover {
+    .btn_enter:hover {
       background-color: #273364;
       color: #fff;
+    }
+
+    .btn_registration {
+      margin-top: 34px;
+      border: none;
+      background-color: transparent;
+      font-weight: 500;
+      font-size: 18px;
+      text-decoration: underline;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #373737;
     }
 
     @media (max-width: 768px) {
