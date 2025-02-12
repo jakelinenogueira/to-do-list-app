@@ -37,8 +37,7 @@ const Login: React.FC = () => {
                 <div className="row">
                     <div className="col-md-12">
                         <div className={styles.content}>
-                            <h1>To-Do List</h1>
-                            <form action="" id="form" method="post">
+                            <form id="form" onSubmit={handleSubmit}>
                                 <div className={styles.background_img}>
                                     <img src="/assets/images/person.png" alt="usuário" />
                                 </div>
@@ -64,9 +63,9 @@ const Login: React.FC = () => {
                                         required
                                     />
                                 </div>
+                                <button type="submit" className={styles.btn_enter}>Entrar</button>
                             </form>
-                            <button type="submit" form="form" className={styles.btn_enter} onSubmit={handleSubmit}>Entrar</button>
-                            <button className={styles.btn_registration} onClick={createRegistration}>Criar cadastro</button>
+                            <button className={styles.btn_registration} onClick={createRegistration}>Cadastrar-se</button>
                         </div>
                     </div>
                 </div>

@@ -1,9 +1,11 @@
 "use client";
 import React, { useState } from 'react';
+import styles from './Signup.module.scss'
 import { auth } from '../../firebase';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { db } from '../../firebase';
 import { doc, setDoc } from 'firebase/firestore';
+import { useRouter } from 'next/navigation';
 
 const Signup: React.FC = () => {
   const [name, setName] = useState('');
@@ -12,6 +14,8 @@ const Signup: React.FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+
+  const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -29,41 +33,47 @@ const Signup: React.FC = () => {
         email,
       });
 
-      // Redireciona para a página de login
-      window.location.href = '/login';
+      router.push('/login');
     } catch (err) {
       setError((err as Error).message);
     }
   };
 
   return (
-    <div className="container mt-5">
-      <h2 className="text-center mb-4">Cadastro</h2>
-      {error && <div className="alert alert-danger">{error}</div>}
-      <form onSubmit={handleSubmit} className="w-50 mx-auto">
-        {/* Campos de entrada */}
-        <div className="mb-3">
-          <label htmlFor="name" className="form-label">Nome</label>
-          <input type="text" className="form-control" id="name" value={name} onChange={(e) => setName(e.target.value)} required />
+    <div className={styles.signup}>
+          <div className="container">
+      <div className="row">
+        <div className="col-md-12">
+          <div className={styles.content}>
+            <h1>Cadastro</h1>
+            {error && <div className="alert alert-danger">{error}</div>}
+            <form onSubmit={handleSubmit}>
+              <div>
+                <label htmlFor="name">Nome</label>
+                <input type="text" id="name" value={name} onChange={(e) => setName(e.target.value)} required />
+              </div>
+              <div>
+                <label htmlFor="age">Idade</label>
+                <input type="text" id="age" value={age} onChange={(e) => setAge(e.target.value)} required />
+              </div>
+              <div>
+                <label htmlFor="profession">Profissão</label>
+                <input type="text" id="profession" value={profession} onChange={(e) => setProfession(e.target.value)} required />
+              </div>
+              <div>
+                <label htmlFor="email">Email</label>
+                <input type="email" id="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
+              </div>
+              <div>
+                <label htmlFor="password">Senha</label>
+                <input type="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
+              </div>
+              <button type="submit">Cadastrar</button>
+            </form>
+          </div>
         </div>
-        <div className="mb-3">
-          <label htmlFor="profession" className="form-label">Profissão</label>
-          <input type="text" className="form-control" id="profession" value={profession} onChange={(e) => setProfession(e.target.value)} required />
-        </div>
-        <div className="mb-3">
-          <label htmlFor="age" className="form-label">Idade</label>
-          <input type="text" className="form-control" id="age" value={age} onChange={(e) => setAge(e.target.value)} required />
-        </div>
-        <div className="mb-3">
-          <label htmlFor="email" className="form-label">Email</label>
-          <input type="email" className="form-control" id="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
-        </div>
-        <div className="mb-3">
-          <label htmlFor="password" className="form-label">Senha</label>
-          <input type="password" className="form-control" id="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
-        </div>
-        <button type="submit" className="btn btn-primary w-100">Cadastrar</button>
-      </form>
+      </div>
+    </div>
     </div>
   );
 };

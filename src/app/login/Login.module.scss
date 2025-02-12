@@ -3,7 +3,6 @@
 
   .content {
     height: 100vh;
-    min-height: 550px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -14,13 +13,12 @@
       font-size: 42px;
       font-weight: 600;
       color: #112142;
-      text-align: center;
     }
 
     form {
       margin: 0 15px;
       position: relative;
-      padding: 100px 50px;
+      padding: 100px 50px 50px;
       width: 518px;
       min-width: 360px;
       background-color: #ffffff8c;
@@ -73,7 +71,7 @@
 
     .btn_enter {
       padding: 15px 0;
-      width: 388px;
+      width: 100%;
       min-width: 270px;
       border: none;
       background-color: #ffffff69;

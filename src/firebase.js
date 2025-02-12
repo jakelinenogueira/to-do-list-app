@@ -3,13 +3,13 @@ import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: "9eL4ussaFN-Dij2aS2wHySuwWQGRkuKW-g1KydEyAHE",
+  apiKey: "AIzaSyBc48UveCCMniagEMpo8FWVJw4V-panK0E",
   authDomain: "to-do-list-app-e7900.firebaseapp.com",
-  projectId: "SEU_PROJECT_ID",
-  storageBucket: "SEU_STORAGE_BUCKET",
-  messagingSenderId: "SEU_MESSAGING_SENDER_ID",
-  appId: "SEU_APP_ID",
-  measurementId: "SEU_MEASUREMENT_ID",
+  projectId: "to-do-list-app-e7900",
+  storageBucket: "to-do-list-app-e7900.firebasestorage.app",
+  messagingSenderId: "959134618040",
+  appId: "1:959134618040:web:9da7591057ab660fc87f4d",
+  measurementId: "G-B1M6F95FSB"
 };
 
 // Inicializa o Firebase
