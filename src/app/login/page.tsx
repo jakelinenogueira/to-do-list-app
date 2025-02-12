@@ -44,7 +44,7 @@ const Login: React.FC = () => {
                                 <div className={styles.form_group}>
                                     <img src="/assets/icons/conecte.png" alt="celular" />
                                     <input
-                                        type="email"
+                                        type="email" 
                                         id="email"
                                         placeholder="Digite seu email"
                                         value={email}

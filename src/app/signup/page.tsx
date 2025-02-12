@@ -39,6 +39,10 @@ const Signup: React.FC = () => {
     }
   };
 
+  const goBack = () => {
+    router.push('/login');
+  }
+
   return (
     <div className={styles.signup}>
           <div className="container">
@@ -49,27 +53,31 @@ const Signup: React.FC = () => {
             {error && <div className="alert alert-danger">{error}</div>}
             <form onSubmit={handleSubmit}>
               <div>
-                <label htmlFor="name">Nome</label>
+                <label htmlFor="name">Nome *</label>
                 <input type="text" id="name" value={name} onChange={(e) => setName(e.target.value)} required />
               </div>
               <div>
-                <label htmlFor="age">Idade</label>
+                <label htmlFor="age">Idade *</label>
                 <input type="text" id="age" value={age} onChange={(e) => setAge(e.target.value)} required />
               </div>
               <div>
-                <label htmlFor="profession">Profissão</label>
+                <label htmlFor="profession">Profissão *</label>
                 <input type="text" id="profession" value={profession} onChange={(e) => setProfession(e.target.value)} required />
               </div>
               <div>
-                <label htmlFor="email">Email</label>
+                <label htmlFor="email">Email *</label>
                 <input type="email" id="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
               </div>
               <div>
-                <label htmlFor="password">Senha</label>
+                <label htmlFor="password">Senha *</label>
                 <input type="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
               </div>
               <button type="submit">Cadastrar</button>
             </form>
+            <button className={styles.btn_go_back} onClick={goBack}>
+              <img src="/assets/icons/arrow.png" alt="seta para esquerda" />
+              Voltar
+            </button>
           </div>
         </div>
       </div>

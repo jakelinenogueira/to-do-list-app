@@ -95,10 +95,13 @@
       background-color: transparent;
       font-weight: 500;
       font-size: 18px;
-      text-decoration: underline;
       text-transform: uppercase;
       letter-spacing: 1px;
       color: #373737;
+    }
+
+    .btn_registration:hover {
+      text-decoration: underline;
     }
 
     @media (max-width: 768px) {
