@@ -19,8 +19,7 @@
       margin: 0 15px;
       position: relative;
       padding: 100px 50px 50px;
-      width: 518px;
-      min-width: 360px;
+      max-width: 518px;
       background-color: #ffffff8c;
       border-radius: 50px;
       display: flex;
@@ -72,7 +71,6 @@
     .btn_enter {
       padding: 15px 0;
       width: 100%;
-      min-width: 270px;
       border: none;
       background-color: #ffffff69;
       border-radius: 0px 0px 30px 30px;
