@@ -137,7 +137,7 @@ export default function Tasks() {
   return (
     <div className={styles.tasks}>
       <div className="container">
-        <div className="row">
+        <div className="row flex-md-row flex-column-reverse">
                 <div className="col-md-6">
                     <div className={styles.main_content}>
                         <Header/>
@@ -179,7 +179,7 @@ export default function Tasks() {
                 <div className="col-md-6">
                     <div className={styles.image_content}>
                       <div className={styles.user_area}>
-                        <p>Bem-vindo, <strong>{userName}</strong>!</p>
+                        <p>Bem-vindo(a), <strong>{userName}</strong>!</p>
                         <button onClick={logout}>Sair</button>
                       </div>
                       <img className="img-fluid" src="/assets/images/list.jpg" alt="cenário"/>
