@@ -89,6 +89,13 @@
       color: #fff;
     }
 
+    .btn_forgot {
+      margin-top: 20px;
+      background-color: transparent;
+      border: none;
+      color: #373737;
+    }
+
     .btn_registration {
       margin-top: 34px;
       border: none;
@@ -100,7 +107,8 @@
       color: #373737;
     }
 
-    .btn_registration:hover {
+    .btn_registration:hover,
+    .btn_forgot:hover {
       text-decoration: underline;
     }
 

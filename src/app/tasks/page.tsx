@@ -9,6 +9,8 @@ import List from "@/components/List/List";
 import Modal from "@/components/Modal/Modal";
 import Filters from "@/components/Filters/Filters"; 
 import Header from '@/components/Header/Header';
+import { auth } from '../../firebase';
+import { onAuthStateChanged, signOut } from "firebase/auth";
 
 
 export default function Tasks() {
@@ -25,6 +27,7 @@ export default function Tasks() {
   const [filterStatus, setFilterStatus] = useState<"all" | "completed" | "incomplete">("all");
   const [searchText, setSearchText] = useState("");
   const router = useRouter();
+  const [userName, setUserName] = useState<string | null>(null); 
 
   const saveTasksToLocalStorage = (tasks: Task[]) => {
     localStorage.setItem("tasks", JSON.stringify(tasks));
@@ -42,6 +45,18 @@ export default function Tasks() {
   useEffect(() => {
     saveTasksToLocalStorage(tasks);
   }, [tasks]);
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setUserName(user.displayName || user.email); 
+      } else {
+        router.push('/login'); 
+      }
+    });
+
+    return () => unsubscribe();
+  }, [router]);
 
   const addTask = (newTask: string) => {
     if (newTask.trim() === "") return;
@@ -113,9 +128,10 @@ export default function Tasks() {
     return true;
   });
 
-  const login = () => {
-    router.push('/login'); 
-  }; 
+  const logout = async () => {
+    await signOut(auth);
+    router.push('/login');
+  };
 
 
   return (
@@ -162,9 +178,12 @@ export default function Tasks() {
                 </div>
                 <div className="col-md-6">
                     <div className={styles.image_content}>
-                        <button onClick={login}>Login</button>
-                        <img className="img-fluid" src="/assets/images/list.jpg" alt="cenário"/>
-                        <p>Created by <a href="https://www.linkedin.com/in/jakeline-nogueira-04b2a314b/" target="_blank" rel="noopener noreferrer">Jakeline Nogueira</a></p>
+                      <div className={styles.user_area}>
+                        <p>Bem-vindo, <strong>{userName}</strong>!</p>
+                        <button onClick={logout}>Sair</button>
+                      </div>
+                      <img className="img-fluid" src="/assets/images/list.jpg" alt="cenário"/>
+                      <p className={styles.copyright}>Created by <a href="https://www.linkedin.com/in/jakeline-nogueira-04b2a314b/" target="_blank">Jakeline Nogueira</a></p>
                     </div>
                 </div>
         </div>

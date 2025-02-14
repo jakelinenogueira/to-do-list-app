@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import styles from './Login.module.scss'
 import { useRouter } from 'next/navigation';
 import { auth } from '../../firebase';
-import { signInWithEmailAndPassword } from 'firebase/auth';
+import { signInWithEmailAndPassword, sendPasswordResetEmail} from 'firebase/auth';
 
 
 
@@ -12,6 +12,7 @@ const Login: React.FC = () => {
     const [password, setPassword] = useState('');
     const router = useRouter();
     const [error, setError] = useState('');
+    const [message, setMessage] = useState('');
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -26,10 +27,27 @@ const Login: React.FC = () => {
           console.error(err);
         }
     };
+
+    const handleForgotPassword = async () => {
+        if (!email) {
+            setError('Digite seu e-mail para redefinir a senha.');
+            return;
+        }
+
+        try {
+            await sendPasswordResetEmail(auth, email);
+            setMessage('E-mail de recuperação enviado! Verifique sua caixa de entrada.');
+            setError('');
+        } catch (err) {
+            setError('Erro ao enviar e-mail de recuperação. Verifique o e-mail digitado.');
+            console.error(err);
+        }
+    };
     
     const createRegistration = () => {
         router.push('/signup'); 
     }; 
+
 
     return (
         <div className={styles.login}>
@@ -37,6 +55,9 @@ const Login: React.FC = () => {
                 <div className="row">
                     <div className="col-md-12">
                         <div className={styles.content}>
+                            {error && <div className="alert alert-danger">{error}</div>}
+                            {message && <div className="alert alert-success">{message}</div>}
+
                             <form id="form" onSubmit={handleSubmit}>
                                 <div className={styles.background_img}>
                                     <img src="/assets/images/person.png" alt="usuário" />
@@ -65,6 +86,9 @@ const Login: React.FC = () => {
                                 </div>
                                 <button type="submit" className={styles.btn_enter}>Entrar</button>
                             </form>
+                            <button className={styles.btn_forgot} onClick={handleForgotPassword}>
+                                Esqueci minha senha
+                            </button>
                             <button className={styles.btn_registration} onClick={createRegistration}>Cadastrar-se</button>
                         </div>
                     </div>

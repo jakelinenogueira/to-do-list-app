@@ -33,23 +33,36 @@
     justify-content: space-between;
     align-items: center;
 
-    button {
-      align-self: flex-end;
-      padding: 8px 16px;
-      background-color: transparent;
-      border: 2px solid #112142;
-      border-radius: 5px;
-      color: #112142;
-      font-size: 16px;
-      font-weight: 500;
+    .user_area {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      p {
+        font-size: 18px;
+        margin-left: 20px;
+        margin-bottom: 0;
+      }
+
+      button {
+        align-self: flex-end;
+        padding: 8px 16px;
+        background-color: transparent;
+        border: 1px solid #112142;
+        border-radius: 5px;
+        color: #112142;
+        font-size: 16px;
+        font-weight: 500;
+      }
+
+      button:hover {
+        background-color: #112142;
+        color: #f6f6ec;
+      }
     }
 
-    button:hover {
-      background-color: #112142;
-      color: #f6f6ec;
-    }
-
-    p {
+    .copyright {
       font-size: 12px;
 
       a {
@@ -61,5 +74,11 @@
         text-decoration: underline;
       }
     }
+  }
+}
+
+@media (max-width: 767px) {
+  .row {
+    flex-direction: column-reverse;
   }
 }
