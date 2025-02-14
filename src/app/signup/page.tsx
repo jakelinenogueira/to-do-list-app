@@ -25,10 +25,6 @@ const Signup: React.FC = () => {
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
 
-      await updateProfile(user, {
-        displayName: name, // "name" deve ser um estado com o valor do input
-      });
-
       // Salva os dados adicionais no Firestore
       await setDoc(doc(db, 'users', user.uid), {
         name,
